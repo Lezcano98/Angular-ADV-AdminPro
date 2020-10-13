@@ -14,7 +14,7 @@ import { ProgressComponent } from './progress/progress.component';
  const routes: Routes = [
    // definicion de las rutas hijas 
    { 
-    path:'dashboard/', 
+    path:'dashboard', 
     component:PagesComponent,
     children:[
        //rutas protegidas 

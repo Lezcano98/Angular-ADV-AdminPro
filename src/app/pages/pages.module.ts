@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 //
 import { CommonModule } from '@angular/common';
+//
+import { ComponetsModule } from '../components/componets.module';
+//
+import { FormsModule} from '@angular/forms'
 // importo el sahred puesto que varios componentes de mi sahred los esta usando mi pages 
 import { SharedModule } from '../shared/shared.module';
 // debo importar mi routingModule puesto que mi pages.components.html esta mi routeroulet
@@ -16,6 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     PagesComponent,
@@ -27,7 +33,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     CommonModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ComponetsModule
   ],
 
 exports:[
