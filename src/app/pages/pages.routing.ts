@@ -9,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 
@@ -19,13 +21,17 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
     component:PagesComponent,
     children:[
        //rutas protegidas solo las personas autenticadas tienen acceso a estas rutas
-        { path:'', component:DashboardComponent},
+        { path:'', component:DashboardComponent, data: {titulo:'DashBoard'} },
  
-        { path:'grafica1', component:Grafica1Component},
+        { path:'grafica1', component:Grafica1Component, data: {titulo:'Grafica'} },
  
-        { path:'progress', component:ProgressComponent},
+        { path:'progress', component:ProgressComponent,data: {titulo:'Progress Bar'} },
 
-        {path:'account-settings',component:AccountSettingComponent}
+        {path:'account-settings',component:AccountSettingComponent, data: {titulo:'Account-Settings'} },
+        
+        {path:'promesas',component:PromesasComponent,data: {titulo:'Promesas'} },
+        
+        {path:'rxjs', component:RxjsComponent,data: {titulo:'RXJS'} }
        
       ]
    },

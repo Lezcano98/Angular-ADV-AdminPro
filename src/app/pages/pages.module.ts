@@ -19,6 +19,10 @@ import { ProgressComponent } from './progress/progress.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 //
 import { AccountSettingComponent } from './account-setting/account-setting.component';
+//
+import { PromesasComponent } from './promesas/promesas.component';
+//
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 
@@ -30,7 +34,9 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
     Grafica1Component,
     ProgressComponent,
     DashboardComponent,
-    AccountSettingComponent
+    AccountSettingComponent,
+    PromesasComponent,
+    RxjsComponent
   ],
 
   imports: [
