@@ -13,3 +13,8 @@ cursor:pointer;
     justify-content: center;
     text-align: center;
 }
+.img-avatar{
+  width: 200px; 
+  height: 200px; 
+  border-radius: 160px;
+}

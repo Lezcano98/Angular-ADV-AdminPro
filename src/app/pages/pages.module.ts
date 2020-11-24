@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //
 import { ComponetsModule } from '../components/componets.module';
 //
-import { FormsModule} from '@angular/forms'
+import { FormsModule, ReactiveFormsModule} from '@angular/forms'
 // importo el sahred puesto que varios componentes de mi sahred los esta usando mi pages 
 import { SharedModule } from '../shared/shared.module';
 // debo importar mi routingModule puesto que mi pages.components.html esta mi routeroulet
@@ -23,6 +23,9 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
 import { PromesasComponent } from './promesas/promesas.component';
 //
 import { RxjsComponent } from './rxjs/rxjs.component';
+//
+import { PerfilComponent } from './perfil/perfil.component';
+
 
 
 
@@ -36,7 +39,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     DashboardComponent,
     AccountSettingComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    PerfilComponent
   ],
 
   imports: [
@@ -44,7 +48,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     SharedModule,
     AppRoutingModule,
     FormsModule,
-    ComponetsModule
+    ComponetsModule,
+    ReactiveFormsModule
   ],
 
 exports:[
