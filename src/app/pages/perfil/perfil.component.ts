@@ -20,7 +20,7 @@ export class PerfilComponent implements OnInit {
   public perfilForm:FormGroup;
   public usuario:Usuario;
   public imagenSubir:File;
-  public imgTemp: any;
+  public imgTemp: any = null;
 
   constructor(private FormBuilder:FormBuilder,private usuarioService:UsuarioService,
     private fileUpload:FileUploadService) {
@@ -72,6 +72,7 @@ export class PerfilComponent implements OnInit {
     console.log(reader.result);
   }
   }
+
   SubirImagen(){
     this.fileUpload.ActualizarFoto(this.imagenSubir,'usuarios',this.usuario.uid)
     .then(img => { 

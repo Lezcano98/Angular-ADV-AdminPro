@@ -7,6 +7,7 @@
 #themecolors .selector,.cursor-pointer{
 cursor:pointer;
 }
+
 #google-btn{
     align-items: center;
     display: flex;
@@ -18,3 +19,27 @@ cursor:pointer;
   height: 200px; 
   border-radius: 160px;
 }
+.w100{
+  width: 100px;
+}
+.avatar{
+  width:65px;
+  border-radius: 100%;
+}
+.w140{
+  width: 140px;
+}
+
+.fondo-modal-imagen{
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  z-index:9999 ;
+}
+.oculto{
+  display: none;
+}
+

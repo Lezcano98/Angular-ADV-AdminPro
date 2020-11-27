@@ -14,6 +14,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 //
 import { AuthGuard } from '../guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
+//matenimientos
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 
 
 
@@ -37,7 +39,10 @@ import { PerfilComponent } from './perfil/perfil.component';
         
         { path:'rxjs', component:RxjsComponent,data: {titulo:'RXJS'} },
 
-        {path: 'perfil',component:PerfilComponent, data:{titulo:'Perfil de Usuario(a)'}}
+        { path: 'perfil',component:PerfilComponent, data:{titulo:'Perfil de Usuario(a)'}},
+      
+        //Mantenimientos
+        {path:'usuarios',component:UsuariosComponent,data:{titulo:'usuarios(a) de aplicacion '}}
        
       ]
    },

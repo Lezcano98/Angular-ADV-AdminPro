@@ -1,4 +1,5 @@
 
+import { InvokeFunctionExpr } from '@angular/compiler';
 import {environment} from '../../environments/environment';
 
 const base_url = environment.base_url;
@@ -19,13 +20,18 @@ export class Usuario{
 
 
     get imagenUrl(){
+      if(!this.img){
+        return `${base_url}/uploads/usuarios/no-image`;
+       }
         //para ver la imagen si me logeo con google 
-        if(this.img.includes('https')){
-            return this.img;
-        }
-        if(this.img){
-            return `${base_url}/uploads/usuarios/${this.img}`;
-        }
+       else if(this.img.includes('https')){
+        return this.img;
+         }
+         
+         else if(this.img){
+             return `${base_url}/uploads/usuarios/${this.img}`;
+         }
+
         else{
             return `${base_url}/uploads/usuarios/no-image`;
         }

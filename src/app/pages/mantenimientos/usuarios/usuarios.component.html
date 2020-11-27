@@ -1,0 +1,105 @@
+<div class="row animate__animated animate__fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+               
+                <input type="text"
+                (keyup)="buscar(txttermino.value)"
+                class="form-control"
+                placeholder="Buscar usuario(a)"
+                #txttermino
+                />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row animate__animated animate__fadeIn"
+      *ngIf="cargando"
+  >
+    <div class="col-12">
+
+      <div class="alert alert-info text-center" role="alert">
+        <h4 class="alert-heading">Cargando</h4>
+       <i class="fa fa-spin fa-refresh fa-2x"></i>
+        <p class="mb-0"> Porfavor espere</p>
+      </div>
+    </div>
+</div>
+
+<div class="row"  
+*ngIf="!cargando">
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Total de Usuarios ({{totalUsuarios}})</h4>
+                <h6 class="card-subtitle">Usuarios Registrados en la Aplicacion  </h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w100">Avatar</th>
+                                <th>Correo</th>
+                                <th>Nombre</th>
+                                <th class="w140">Rol</th>
+                                <th class="w100">Auth</th>
+                                <th class="text-nowrap w100">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios">
+                                <td class="text-center cursor-pointer">
+                                    <img 
+                                    [src]="usuario.imagenUrl" 
+                                    alt="Avatar de usuario"
+                                    class="avatar"
+                                    (click)="abrirModal(usuario)"
+                                    ></td>
+                                    
+                                <td>{{usuario.email}}</td>
+                                <td>{{usuario.nombre}}</td>
+                                <td>
+                                    <select 
+                                    class="form-control"
+                                    [(ngModel)]="usuario.role"
+                                    (change)="cambiarRole(usuario)"
+                                    >
+                                        <option value="Admin_Rol">Adminitrador</option>
+                                        <option value="User_Role">Usuario</option>
+                                    </select>
+                                </td>
+                                <td >
+                                   <span *ngIf="usuario.google" class="label label-danger">Google</span>
+                                   <span *ngIf="!usuario.google" class="label label-info">Email</span>
+
+                                </td>
+                                <td class="text-nowrap text-center">
+                               
+                                    &nbsp;
+                                    <a (click)="eliminarUsuario(usuario)" 
+                                    class="cursor-pointer" 
+                                    data-toggle="tooltip" 
+                                    data-original-title="Borrar"> 
+                                    <i class="far fa-trash-alt" style="color: red;"></i>
+                                </a>
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+                  <div *ngIf="txttermino.value.length === 0">
+                    <button (click)="cambiarPagina(-5)" class="btn btn-primary">Anterior</button>
+                    &nbsp;
+                    <button (click)="cambiarPagina(5)" class="btn btn-primary">Siguiente</button>
+                  </div>
+               
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

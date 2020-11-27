@@ -9,9 +9,12 @@ import { environment } from '../../environments/environment';
 import { LoginForm } from '../interfaces/login-form.interface';
 //
 import {tap,map, catchError} from 'rxjs/operators';
+//
 import { Observable,of } from 'rxjs';
 //
 import { Usuario } from '../models/usuario.model';
+//interface
+import { cargarUsuario } from '../interfaces/cargar-usuarios-interface';
 
 
 const url = environment.base_url;
@@ -38,6 +41,14 @@ export class UsuarioService {
 
   get uid():string{
     return this.usuario.uid || '';
+  }
+
+  get headers(){
+    return {
+      headers:{
+        'x-token':this.Token
+      }
+    }
   }
 
   googleInit(){
@@ -70,9 +81,8 @@ export class UsuarioService {
 
  validarToken():Observable<boolean> {
  
-   return this.http.get(`${url}/login/renew`,{ 
-     headers:{ 'x-token': this.Token }
- }).pipe(
+   return this.http.get(`${url}/login/renew`,this.headers)
+   .pipe(
    map((resp:any)=>{
      //img='' lo hago asi por si la persona que se logea no tiene imagen poder asignarle un lavor por defecto
 
@@ -101,16 +111,11 @@ export class UsuarioService {
   ActualizarUsuario(data: {email:string, nombre:string ,role:string}){
 
     data={
-      ... data,
+      ...data,
       role:this.usuario.role
-    };
-   return this.http.put(`${url}/usuarios/${this.uid}`,data,{
-      headers:{
-        'x-token':this.Token
-      }
-    });
-
-  }
+    }
+   return this.http.put(`${url}/usuarios/${this.uid}`,data,this.headers);
+}
 
   loginUsuario(formData:LoginForm){
 
@@ -133,6 +138,34 @@ export class UsuarioService {
       );
  
    }
+
+   cargarUsuarios(desde:number = 0 ){
+     const base_url =`${url}/usuarios?desde=${desde}`;
+    return this.http.get<cargarUsuario>(base_url,this.headers).pipe(
+      map( (resp) => {
+      const usuarios= resp.usuarios.map(
+        user=> new Usuario(user.nombre,user.email,'',user.img,user.google,user.role,user.uid))
+       return {
+         total: resp.total,
+         usuarios
+       };
+
+      })
+    );
+   }
+
+   eliminarUsuario(usuario:Usuario){
+     
+    const base_url = `${url}/usuarios/${usuario.uid}`;
+
+    return this.http.delete(base_url,this.headers);
+   }
+
+   ModificarUsuario(usuario:Usuario){
+
+    return this.http.put(`${url}/usuarios/${usuario.uid}`,usuario,this.headers);
+ }
+   
 
 
 }
