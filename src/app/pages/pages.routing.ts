@@ -16,6 +16,9 @@ import { AuthGuard } from '../guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
 //matenimientos
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 
 
 
@@ -42,7 +45,13 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
         { path: 'perfil',component:PerfilComponent, data:{titulo:'Perfil de Usuario(a)'}},
       
         //Mantenimientos
-        {path:'usuarios',component:UsuariosComponent,data:{titulo:'usuarios(a) de aplicacion '}}
+        {path:'usuarios',component:UsuariosComponent,data:{titulo:'usuarios(a) de aplicacion '}},
+
+        {path:'hospitales',component:HospitalesComponent,data:{titulo:'hospitales'}},
+
+        {path:'medicos',component:MedicosComponent,data:{titulo:'medicos'}},
+
+        {path:'medico/:id',component:MedicoComponent,data:{titulo:'medico'}},
        
       ]
    },

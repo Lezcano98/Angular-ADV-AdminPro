@@ -1,0 +1,118 @@
+<div class="row animate__animated animate__fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+               
+                <input 
+                (keyup)="buscar(txtTermino.value)"
+                type="text"
+                class="form-control"
+                placeholder="Buscar Hospital"
+                #txtTermino
+                
+                />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row animate__animated animate__fadeIn"
+*ngIf="cargando"
+>
+    <div class="col-12">
+
+      <div class="alert alert-info text-center" role="alert">
+        <h4 class="alert-heading">Cargando</h4>
+       <i class="fa fa-spin fa-refresh fa-2x"></i>
+        <p class="mb-0"> Porfavor espere</p>
+      </div>
+    </div>
+</div>
+
+<div class="row"
+*ngIf="!cargando"
+>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+               
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Hospitales ({{hospitales.length}})</h4>
+                        <h6 class="card-subtitle">
+                            Hospitales Registrados en la Aplicacion  
+                        </h6>
+                    </div>
+                    <div class="col">
+                        <div class="text-right">
+                            <button 
+                            (click)="abrirSweetAlert()"
+                            class="btn btn-primary">
+                                <i class="fa fa-hospital-o"></i>
+                                Crear Hospital
+                             </button>
+                        </div>
+                    </div>              
+                </div>
+  
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w100">foto</th>
+                                <th>Nombre</th>
+                                <th class="text-nowrap w100">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of hospitales">
+                                <td class="text-center">
+                                 <img 
+                                 class="w100 cursor-pointer"  
+                                 [src]="hospital.img | imagen:'hospitales'" 
+                                 [alt]="hospital.nombre"
+                                 (click)="abrirModal(hospital)"
+                                 >
+                                </td>
+                                <td>
+                                    <input 
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Nombre del Hospital"
+                                    [(ngModel)]="hospital.nombre"
+                                    />
+                                </td>
+                                <td class="text-nowrap text-center">
+                                    <a 
+                                    (click)="guardarCambios(hospital)"
+                                    class="cursor-pointer" 
+                                    data-toggle="tooltip"
+                                     data-original-title="Guardar Cambios"> 
+                                     <i class="far fa-save" style="color: blue;">
+                                    </i>
+                                </a>
+                                    &nbsp;
+                                    <a 
+                                    (click)="Eliminar(hospital)"
+                                    class="cursor-pointer" 
+                                    data-toggle="tooltip" 
+                                    data-original-title="Borrar"> 
+                                    <i class="far fa-trash-alt" style="color: red;">
+                                    </i>
+                                </a>
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+<!-- 
+                <button class="btn btn-primary">Anterior</button>
+                 &nbsp;
+                <button class="btn btn-primary">Siguiente</button> -->
+
+            </div>
+        </div>
+    </div>
+</div>

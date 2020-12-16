@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Usuario } from '../models/usuario.model';
+import { Hospital } from '../models/hospital.model';
+import { Medicos } from '../models/medicos.model';
 
 const base_url = environment.base_url;
 
@@ -26,10 +28,20 @@ export class BusquedasService {
   private TransformarUsuarios (resultado:any[]):Usuario[]   {
   return resultado.map(
 
-    user=> new Usuario(user.nombre,user.email,'',user.img,user.google,user.role,user.uid)
+    user => new Usuario(user.nombre,user.email,'',user.img,user.google,user.role,user.uid)
   );
   }
+// resultado es el nombre que asigne a la respuesta de mi BackEnd,
+// es importante que este nombre se mantega parq ue los resultados de la busqueda sean precisos y evitar un error
 
+  private TransformarHospitales (resultado:any[]):Hospital[]   {
+    return resultado;
+    }
+
+    private TransformarMedicos (resultado:any[]):Medicos[]   {
+      return resultado;
+      }
+    
   Buscar(tipo:'usuarios'|'medicos'|'hospitales', 
   termino:string)
   {
@@ -41,8 +53,12 @@ export class BusquedasService {
        switch (tipo) {
          case 'usuarios':
           return this.TransformarUsuarios(resp.resultado);
-           
-           break;
+          
+           case 'hospitales':
+             return this.TransformarHospitales(resp.resultado);
+
+             case 'medicos':
+              return this.TransformarMedicos(resp.resultado);
        
          default:
            return[];

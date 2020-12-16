@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Medico</h4>
+                <h6 class="card-subtitle">Actualizar Informacion</h6>
+               
+                <form 
+                class="form-horizontal p-t-20"
+                [formGroup]="medicoForm"
+                (submit)="guardarMedico()"
+                >
+                    <div class="form-group row"
+                    *ngIf="medicoSelecionado"
+                    >
+
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+
+                                <img [src]="medicoSelecionado.img |imagen:'medicos'" class="w140" alt=""/>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ================================================================== -->
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input 
+                                formControlName="nombre"
+                                type="text" 
+                                class="form-control" 
+                                id="exampleInputuname3" 
+                                placeholder="Nombre del Medico">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Hospital</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                               <select
+                                formControlName="hospital"
+                               class="form-control">
+                                  <option value="">::Selecione Hospital::</option>
+
+                                  <option *ngFor="let hospital of hospitales"
+                                   [value]="hospital._id"
+                                   >
+                                {{hospital.nombre}}
+                                </option>
+
+                                   </select>
+                               
+                            </div>
+                        </div>
+                    </div>
+               
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button 
+                            type="submit" 
+                            [disabled]="medicoForm.invalid"
+                            class="btn btn-success waves-effect waves-light">
+                            <i *ngIf="medicoForm.valid" class="fa fa-save"></i>
+                            <i *ngIf="medicoForm.invalid" class="fas fa-ban"></i>
+                            Guadar Cambios
+                        </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 animated fadeIn fast"
+    *ngIf="hospitalSelecionado"
+    >
+    
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Hospital</h4>
+            <h6 class="card-subtitle">{{hospitalSelecionado.nombre}}</h6>
+
+            
+            <img [src]="hospitalSelecionado.img | imagen:'hospitales' " class="w140" [alt]=""/>
+            
+        </div>
+    </div>
+    </div>
+</div>

@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { ModalImagenService } from '../../../services/modal-imagen.service';
 //
 import { delay } from 'rxjs/operators';
+//
 import { Subscription } from 'rxjs';
 
 
@@ -38,7 +39,7 @@ export class UsuariosComponent implements OnInit,OnDestroy {
 
   this.imgSubs = this.modalservice.nuevaimagen.pipe(
      delay(100)
-   ).subscribe(img=>{
+   ).subscribe(img =>{
     this.cargarUsuarios();
    });
  
@@ -76,8 +77,10 @@ this.cargarUsuarios();
    return this.usuarios = this.usuariosTemp;
  }
 
-   this.BuscarService.Buscar('usuarios',termino).subscribe( resultados=>{
-    this.usuarios= resultados;
+   this.BuscarService.Buscar('usuarios',termino).subscribe( (resultados:Usuario[]) =>{
+       // se debe apliacar el casteo necesario porque se debe ser lo mas especifico posible,
+        //para que typescriot no de errores de ambiguedad.
+    this.usuarios = resultados;
    })
   }
    
