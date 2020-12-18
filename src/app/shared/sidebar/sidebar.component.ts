@@ -15,14 +15,14 @@ import { Usuario } from '../../models/usuario.model';
 
 export class SidebarComponent implements OnInit {
 
- menuitems:any[]=[];
+ //menuitems:any[]=[];
 
  public usuario: Usuario;
 
  public imgUrl = '';
 
-  constructor(private sidebarService:SidebarService , private usuarioService:UsuarioService) { 
-    this.menuitems=sidebarService.menu;
+  constructor(public sidebarService:SidebarService , private usuarioService:UsuarioService) { 
+    //this.menuitems=sidebarService.menu;
     
     this.usuario = this.usuarioService.usuario;
    

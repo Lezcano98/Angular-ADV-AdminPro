@@ -13,12 +13,15 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 //
 import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
 import { PerfilComponent } from './perfil/perfil.component';
 //matenimientos
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { BusquedasComponent } from './busquedas/busquedas.component';
+
 
 
 
@@ -43,15 +46,20 @@ import { MedicoComponent } from './mantenimientos/medicos/medico.component';
         { path:'rxjs', component:RxjsComponent,data: {titulo:'RXJS'} },
 
         { path: 'perfil',component:PerfilComponent, data:{titulo:'Perfil de Usuario(a)'}},
+
+        { path: 'buscar/:termino',component:BusquedasComponent, data:{titulo:'Busquedas'}},
       
         //Mantenimientos
-        {path:'usuarios',component:UsuariosComponent,data:{titulo:'usuarios(a) de aplicacion '}},
-
         {path:'hospitales',component:HospitalesComponent,data:{titulo:'hospitales'}},
 
         {path:'medicos',component:MedicosComponent,data:{titulo:'medicos'}},
 
         {path:'medico/:id',component:MedicoComponent,data:{titulo:'medico'}},
+       
+        //rutas que solo podra ver el adminitrador
+        {path:'usuarios',canActivate:[AdminGuard],component:UsuariosComponent,data:{titulo:'usuarios(a) de aplicacion '}},
+
+     
        
       ]
    },

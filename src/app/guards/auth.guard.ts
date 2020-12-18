@@ -13,6 +13,7 @@ export class AuthGuard implements CanActivate {
   
   canActivate(
 
+    // con este guard me encargo de tener a los usarios activos simpre autenticados 
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
      return this.usuarioService.validarToken().pipe(

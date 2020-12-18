@@ -51,6 +51,13 @@ export class UsuarioService {
     }
   }
 
+  get role():string{
+    return this.usuario.role;
+  }
+   guardarLocalStorage(token:string, menu:any ){
+    localStorage.setItem('token',token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+    }
   googleInit(){
 
     return new Promise((resolve,reject) =>{
@@ -61,7 +68,7 @@ export class UsuarioService {
           cookiepolicy: 'single_host_origin',
         });
 
-        //
+        // se debe dejar asi   resolve(); aunque marque el error 
         resolve();
       });
 
@@ -71,7 +78,9 @@ export class UsuarioService {
   }
 
   logout(){
+
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
     this.auth2.signOut().then(()=>{
 
       this.ngzone.run(() => {} )
@@ -90,7 +99,7 @@ export class UsuarioService {
 
      this.usuario = new Usuario(nombre,email,'',img,google,role,uid);
 
-    localStorage.setItem('token', resp.token);
+    this.guardarLocalStorage(resp.token,resp.menu);
     
     return true;
    }),
@@ -104,7 +113,7 @@ export class UsuarioService {
    return this.http.post(`${url}/usuarios`,formData)
    .pipe( 
     tap( (resp:any) =>{
-      localStorage.setItem('token', resp.token);
+      this.guardarLocalStorage(resp.token,resp.menu);
     })
     );
   }
@@ -122,7 +131,7 @@ export class UsuarioService {
     return this.http.post(`${url}/login`,formData)
     .pipe( 
       tap( (resp:any) =>{
-        localStorage.setItem('token', resp.token);
+        this.guardarLocalStorage(resp.token,resp.menu);
       })
       );
  
@@ -133,7 +142,7 @@ export class UsuarioService {
     return this.http.post(`${url}/login/google`,{token})
     .pipe( 
       tap( (resp:any) =>{
-        localStorage.setItem('token', resp.token);
+        this.guardarLocalStorage(resp.token,resp.menu);
       })
       );
  

@@ -1,0 +1,138 @@
+<div class="row  animate__animated animate__bounceInLeft">
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+
+               <h3>Usuarios</h3>
+               <div class="alert alert-info"
+                role="alert"
+                *ngIf="usuarios.length === 0"
+                >
+                 <p>No se encontro informacion con ese termino de busqueda. 
+                     Porfavor intentelo de nuevo
+                 </p>
+               </div>
+
+               <div class="table-responsibe">
+
+                <table class="table">
+                  <thead>
+                      <tr >
+                          <th>Avatar</th>
+                          <th>Nombre</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let busqueda of usuarios"
+                      class="animate__animated animate__pulse"
+                      >
+                        <td> <img class="avatar" [src]="busqueda.img |imagen:'usuarios'" alt="">  </td>
+                        <td>{{busqueda.nombre}}</td>
+
+                      </tr>
+                   
+                  </tbody>
+
+                </table>
+
+               </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+    
+               <h3>Medicos</h3>
+               <div 
+               class="alert alert-info" 
+               role="alert"
+               *ngIf="medicos.length === 0"
+               >
+                 <p>No se encontraron medicos con ese termino de busqueda. 
+                   
+                 </p>
+               </div>
+    
+               <div class="table-responsibe">
+    
+                <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Avatar</th>
+                          <th>Nombre</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let busqueda of medicos"
+                      class="animate__animated animate__pulse"
+                      >
+                        
+                        <td> <img class="avatar" [src]="busqueda.img |imagen:'medicos'" alt=""></td>
+
+                        <td>
+                            <a [routerLink]="['/dashboard/medico',busqueda._id]">
+                                {{busqueda.nombre}}
+                            </a>
+                          
+                        </td>
+    
+                      </tr>
+                   
+                  </tbody>
+    
+                </table>
+    
+               </div>
+    
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+    
+               <h3>Hospitales</h3>
+               <div 
+               class="alert alert-info" 
+               role="alert"
+               *ngIf="hospitales.length === 0"
+               >
+                 <p>No se encontron hospitales con ese termino de busqueda. 
+                    
+                 </p>
+               </div>
+    
+               <div class="table-responsibe">
+    
+                <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Avatar</th>
+                          <th>Nombre</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let busqueda of hospitales"
+                      class="animate__animated animate__pulse"
+                      >
+                        <td> <img class="w140" [src]=" busqueda.img |imagen:'hospitales'" alt=""></td>
+                        <td>{{busqueda.nombre}}</td>
+    
+                      </tr>
+                   
+                  </tbody>
+    
+                </table>
+    
+               </div>
+    
+            </div>
+        </div>
+    </div>
+
+</div> 
+
